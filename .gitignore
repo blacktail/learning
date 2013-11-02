@@ -8,3 +8,9 @@ css
 **/js/.startup.build.js
 *~*
 
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
