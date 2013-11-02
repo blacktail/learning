@@ -1,0 +1,20 @@
+{
+  "name": "real-edit",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-foundation": "~4.0.0",
+    "ztree": "~3.5.0",
+    "backbone": "~1.1.0",
+    "handlebars": "~1.0.0",
+    "jquery": "~2.0.3",
+    "lodash": "~2.2.1",
+    "requirejs": "2.1.6"
+  }
+}

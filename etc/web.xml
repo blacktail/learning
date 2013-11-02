@@ -1,0 +1,42 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+	<context-param>
+		<param-name>jdbcURL</param-name>
+		<param-value>jdbc:mysql://192.168.1.101:3306/learning</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>user</param-name>
+		<param-value>root</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>123456</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+			com.learning.LearningServletContextListener
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Service Nodes</servlet-name>
+		<servlet-class>com.learning.web.ServiceNodes</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Service</servlet-name>
+		<servlet-class>com.learning.web.ServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Service Nodes</servlet-name>
+		<url-pattern>/getServiceNodes</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Service</servlet-name>
+		<url-pattern>/service</url-pattern>
+	</servlet-mapping>
+</web-app>

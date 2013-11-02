@@ -1,0 +1,17 @@
+[
+	{
+		"id": "1",
+		"name": "ttt",
+		"isParent": true
+	},
+	{
+		"id": "2",
+		"name": "ttt2",
+		"isParent": true
+	},
+	{
+		"id": "3",
+		"name": "small project 3",
+		"isParent": false
+	}
+]

@@ -1,0 +1,13 @@
+{
+	"id": 3,
+	"name": "small project 4",
+	"url": "http://www.portal.com",
+	"description": "this is a test project",
+	"isMonitoring": false,
+	"isAlerting": true,
+	"pollingInterval": 3,
+	"transition": 10,
+	"overallAlertLevel": "warning",
+	"globalSmAlertCond": "half",
+	"individualAlertLevel": "critical"
+}
