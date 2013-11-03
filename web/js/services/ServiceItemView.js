@@ -18,14 +18,9 @@ define([
 
 		initialize: function(options) {
 			this.listenTo(this.model, 'change', this.render);
-			this.listenTo(this.model, 'error', function(model, resp) {
-				if (resp.status >= 200 && resp.status < 300) {
-					this.showTips(false, 'Parse Error');
-				} else {
-					this.showTips(false, 'Network Error(status: ' + resp.status + '-' + resp.statusText + ')');
-				}
-			});
+			this.listenTo(this.model, 'error', this.errorHandler);
 			this.listenTo(this.model, 'destroy', this.onServiceDeleted);
+			this.listenTo(this.model, 'invalid', this.onValidateFailed);
 		},
 
 		render: function(model) {
@@ -50,11 +45,15 @@ define([
 			});
 
 			var that = this;
+
 			this.model.save(obj, {
 				success: function() {
-					that.showTips(true, (that.model.isNew ? 'Add ' : 'Update ') + 'service successfully.');
-					that.trigger(that.model.isNew ? 'service:added' : 'service:updated', that.model.toJSON());
-				}
+					var isNew = that.model.get('isNew');
+
+					that.showTips(true, (isNew ? 'Add ' : 'Update ') + 'service successfully.');
+					that.trigger(isNew ? 'service:added' : 'service:updated', that.model.toJSON());
+				},
+				wait: true
 			});
 		},
 
@@ -64,8 +63,11 @@ define([
 
 		onServiceDeleted: function(model) {
 			this.remove();
-			console.log(this.model.toJSON(), model.toJSON());
-			this.triggler('service:deleted', model.toJSON());
+			this.trigger('service:deleted', model.toJSON());
+		},
+
+		onValidateFailed: function(model, error) {
+			this.showTips(false, error);
 		},
 
 		showTips: function(success, msg) {
@@ -87,6 +89,21 @@ define([
 			setTimeout(function() {
 				this.$('.alert-box').fadeOut();
 			}, 3000);
+		},
+
+		errorHandler: function(model, resp) {
+			if (resp.status >= 200 && resp.status < 300) {
+				this.showTips(false, 'Parse Error');
+			} else {
+				var errorObj = {};
+				try {
+					errorObj = JSON.parse(resp.responseText);
+				} catch (e) {
+
+				}
+
+				this.showTips(false, 'Network Error(status: ' + resp.status + '-' + resp.statusText + '): ' + (errorObj.msg || ''));
+			}
 		}
 	});
 

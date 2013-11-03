@@ -93,6 +93,10 @@ public class Service {
 	}
 
 	public void setParentId(int parentId) {
+		if (parentId <= 0) {
+			parentId = 1;
+		}
+		
 		this.parentId= parentId;
 	}
 }

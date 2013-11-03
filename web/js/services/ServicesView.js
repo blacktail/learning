@@ -44,6 +44,8 @@ define([
 					dataFilter: function(treeId, parentNode, childNodes) {
 						if (!childNodes) return null;
 
+						childNodes = childNodes.data || [];
+						
 						_.each(childNodes, function(node) {
 							node.iconSkin = 'lm';
 						});
