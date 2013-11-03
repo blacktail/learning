@@ -14,7 +14,7 @@
 	</target>
 
 	<target name="compile"  depends="init">
-		<javac srcdir="${src_dir}" destdir="${classes_dir}">
+		<javac srcdir="${src_dir}" destdir="${classes_dir}" includeantruntime="yes">
 			<classpath refid="compile.classpath"/> 
 		</javac>
 	</target>
@@ -25,10 +25,24 @@
 		</fileset> 
 	</path> 
 
+	<target name="war"> 
+		<war destfile="${dist_dir}/learning.war" webxml="${etc_dir}/web.xml"> 
+			<fileset dir="${web_dist_dir}"/>
+			<lib dir="${lib_dir}"/> 
+			<classes dir="${classes_dir}"/> 
+		</war> 
+	</target>
+
 	<target name="clean">
 		<delete dir="${classes_dir}" />
 		<delete dir="${dist_dir}" />
-		<delete dir="${web_dist_dir" />
+		<delete dir="${web_dist_dir}" />
+	</target>
+
+	<target name="debug" depends="clean, compile, web_debug, war, grunt_clean">
+	</target>
+
+	<target name="dist" depends="clean, compile, web_dist, war, grunt_clean">
 	</target>
 
 	<target name="grunt_dist">
@@ -40,6 +54,12 @@
 	<target name="grunt_debug">
 		<exec executable="grunt" dir="${web_dir}">
 			<arg value="init" />
+		</exec>
+	</target>
+
+	<target name="grunt_clean">
+		<exec executable="grunt" dir="${web_dir}">
+			<arg value="clean" />
 		</exec>
 	</target>
 
@@ -59,17 +79,4 @@
 	<target name="web_dist" depends="grunt_dist">
 	</target>
 
-	<target name="debug" depends="compile, web_debug, war">
-	</target>
-
-	<target name="dist" depends="compile, web_dist, war">
-	</target>
-
-	<target name="war"> 
-		<war destfile="${dist_dir}/learning.war" webxml="${etc_dir}/web.xml"> 
-			<fileset dir="${web_dist_dir}"/>
-			<lib dir="${lib_dir}"/> 
-			<classes dir="${classes_dir}"/> 
-		</war> 
-	</target> 
 </project>
