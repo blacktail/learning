@@ -10,8 +10,7 @@ How to run
 - mysql server
 
 #### Step1 - download
-- front-end optimized version: Download **target/learning.war** and move to tomcat/webapps
-- front-end src version:	Download **target/learning-src.war** and move to tomcat/webapps
+- Download **target/learning.war** and move to tomcat/webapps
 - start tomcat server(tomcat/bin/catalina.sh start), tomcat will automatically deploy the WAR ball. 
 
 #### Step2 - config database
