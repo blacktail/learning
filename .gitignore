@@ -1,7 +1,8 @@
 classes
+target
+*dist
 node_modules
 vendor
-css
 .auto_*.js
 .*_compiled.js
 **/js/startup.js

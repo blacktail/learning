@@ -3,7 +3,7 @@ var _ = require('lodash'),
 		'services': 'index.html'
 	},
 	srcDir = '.',
-	destDir = '../dist';
+	destDir = '../web_dist';
 
 module.exports = function (grunt) {
 	var buildVersion = encodeURIComponent(grunt.template.date(new Date().getTime(), 'yyyymmddHHMMsso'));
@@ -157,7 +157,7 @@ module.exports = function (grunt) {
 
 	grunt.loadTasks('grunt_tasks');
 
-	grunt.registerTask('init', ['stylus', 'templates_debug', 'concat:startup', 'watch']);
+	grunt.registerTask('init', ['stylus', 'templates_debug', 'concat:startup']);
 	grunt.registerTask('dist', ['clean', 'stylus', 'jshint', 'handlebars', 'concat', 'requirejs', 'copy', 'cssmin', 'clean:temporary']);
 	grunt.registerTask('default', ['dist', 'init']);
 
