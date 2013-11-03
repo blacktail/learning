@@ -1,22 +1,57 @@
-learning servlet & backbone & mysql(jdbc)
+Learning servlet & backbone & mysql(jdbc)
 
 
 How to run
 ---------------
 
-1. Step1 - download
-  1. front-end optimized version: Download **target/learning.war** and move to tomcat/webapps
-  2. front-end src version:	Download **target/learning-src.war** and move to tomcat/webapps
-  3. start tomcat server(tomcat/bin/catalina.sh start), tomcat will automatically deploy the WAR ball. 
+#### Prerequisites
+- java1.6
+- tomcat6
+- mysql server
 
-2. Step2 - config database
-  1. start a MySQL server
-  2. download **learning.sql** and run it in your MySQL server
-  3. config MySQL connection parameters,find the file: **tomcat/webapps/learning/WEB-INF/web.xml**, change **context-param**
-  4. restart tomcat server
+#### Step1 - download
+- front-end optimized version: Download **target/learning.war** and move to tomcat/webapps
+- front-end src version:	Download **target/learning-src.war** and move to tomcat/webapps
+- start tomcat server(tomcat/bin/catalina.sh start), tomcat will automatically deploy the WAR ball. 
 
-    ```
-      $ tomcat/bin/catalina.sh stop
-      $ tomcat/bin/catalina.sh start
-    ```
+#### Step2 - config database
+- start a MySQL server
+- download **learning.sql** and run it in your MySQL server
+- config MySQL connection parameters,find the file: **tomcat/webapps/learning/WEB-INF/web.xml**, change **context-param**
+- restart tomcat server
 
+  ```
+    $ tomcat/bin/catalina.sh stop
+    $ tomcat/bin/catalina.sh start
+  ```
+
+Development & Build
+--------------------
+#### Prerequisites
+- jdk1.6
+- tomcat6
+- mysql server
+- node.js
+- Apache Ant
+
+#### Front-end Development Environment
+```
+  # Install Grunt.js & Bower
+  npm install -g grunt-cli
+  npm install -g bower
+  
+  # Install 3rd-party libs for frontend dev
+  cd web
+  bower install
+  npm install
+  
+  # Begin to Front-end development
+  grunt init
+  grunt watch
+```
+
+#### Application Build
+```
+  ant                 # front-end optimized building
+  ant debug           # front-end not-optimized building
+```
