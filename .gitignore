@@ -1,6 +1,7 @@
 classes
 target
 *dist
+*.war
 node_modules
 vendor
 .auto_*.js
