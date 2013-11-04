@@ -1,5 +1,7 @@
 create database learning;
 
+use learning;
+
 create table `parent_nodes`(
 	`id` int not null auto_increment,
 	`name` varchar(255) not null,
@@ -27,7 +29,7 @@ create table `service`(
 	FOREIGN KEY (parentId) REFERENCES parent_nodes(id)
 );
 
-// prepare init data for table parent_nodes
+/* prepare init data for table parent_nodes */
 insert into parent_nodes(name) values('__root__');
 insert into parent_nodes(name, parentId) values('ttt', 1);
 insert into parent_nodes(name, parentId) values('ttt2', 1);
